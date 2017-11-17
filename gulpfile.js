@@ -12,11 +12,10 @@ const del = require("del");
 const nodemon = require('gulp-nodemon');
 
 // File paths
-// ** grabs javascript files from folders in the scripts folder
-const distPath = "web-app/";
-const scriptsPath = "app.js";
-const cssPath = "styles.css";
-const htmlPath = "index.html";
+const distPath = "public/web-app";
+const scriptsPath = "public/scripts/**/*.js";
+const cssPath = "public/css/**/*.css";
+const htmlPath = "public/*.html";
 
 // When you are creating a gulp task, you are creating a unit of functionality
 
