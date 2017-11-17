@@ -13,7 +13,7 @@ const nodemon = require('gulp-nodemon');
 
 // File paths
 // ** grabs javascript files from folders in the scripts folder
-const distPath = "app/";
+const distPath = "web-app/";
 const scriptsPath = "app.js";
 const cssPath = "styles.css";
 const htmlPath = "index.html";
@@ -46,7 +46,7 @@ gulp.task("styles", () => {
       // 1/2 begin the process of sourcing. init for css
       .pipe(autoprefixer())
       // autoprefixer automatically adds support for all browsers
-      .pipe(concat("style.css"))
+      .pipe(concat("styles.css"))
       .pipe(cleanCSS())
       .pipe(sourcemaps.write())
       // 2/2 write it to folder. write for css
@@ -74,7 +74,7 @@ gulp.task("scripts", () => {
       })
     )
     .pipe(uglify())
-    .pipe(concat("main.js"))
+    .pipe(concat("app.js"))
     .pipe(sourcemaps.write())
 	.pipe(gulp.dest(distPath))
 	.pipe(liveReload());
@@ -95,15 +95,7 @@ gulp.task(
   }
 );
 
-gulp.task('server', () => {
-  nodemon({
-    script: "server.js",
-    ext: "js css html",
-    env: { NODE_ENV: "development" }
-  });
-})
-
-gulp.task("watch", ["default", "server"], () => {
+gulp.task("watch", ["default"], () => {
   // runs default first so that we can see the latest version
   console.log("Starting watch task");
   require('./server.js');
